@@ -6,6 +6,20 @@ dotenv.config({ //ye isiliye kaafi taaki dotenv ko import se laa ske require se 
     path: './.env'
 })
 connectDB()
+.then(() => {
+    app.listen(process.env.PORT || 8000 , () => {
+        console.log(`Server is running at PoRt : ${process.env.PORT}`)
+
+    })
+    app.on('error' , (error) => {
+        console.log("Error" , error)
+        throw error
+    })
+})
+.catch((err) => {
+
+    console.log("MONGO db connection failed !!!" , err)
+})
 // import express from "express";
 // const app = express()(
 //   /* async → function ko asynchronous banata hai. Iske andar hamesha ek Promise return hota hai.
